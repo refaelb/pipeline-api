@@ -14,7 +14,7 @@
                 "port": "",
                 "volumes":
                 {
-                    "enable": false,
+                    "enable": "false",
                     "name": "",
                     "mount_path": "",
                     "sub_path": ""

@@ -1,0 +1,10 @@
+HTTP/2 409 
+date: Wed, 07 Sep 2022 20:26:16 GMT
+content-type: application/json
+content-length: 125
+expires: Wed 24 Feb 1982 18:42:00 GMT
+x-api-schemas: https://rancher.branch-yesodot.org/v3/cluster/local/schemas
+x-content-type-options: nosniff
+strict-transport-security: max-age=15724800; includeSubDomains
+
+{"baseType":"error","code":"AlreadyExists","message":"namespaces \"api-test21\" already exists","status":409,"type":"error"}

@@ -10,38 +10,39 @@ from pathlib import Path
 
 
 
-valuse="""name: {service_name}
-replicaCount: {service_replica_count}
+
+valuse="""name: {}
+replicaCount: {}
 
 images:
-  PullSecrets: {service_pull}
-  repository: {service_repo}
-  tag: {service_tag}
+  PullSecrets: {}
+  repository: {}
+  tag: {}
 
 service:
- ports: {service_port}
+ ports: {}
 
 volume:
-  - enable: {volume_status}
-    name: {volume_name}
+  - enable: {}
+    name: {}
     type: volumeClaim
-    claimName: {volume_name} 
+    claimName: {} 
     mounts:
-      - mountPath: {volume_mount}
-        subPath: {volume_path}
+      - mountPath: {}
+        subPath: {}
 
 config:
-  configmaps: {configmap}
+  configmaps: {}
 
 ingress:
-  enabled: {ingress_status}
+  enabled: {}
   annotations: 
     myannotation: test
   hosts:
-  - host: {ingress_host}
+  - host: {}
     paths:
-      - path: {ingress_path}
-        service: {ingress_service_name}
+      - path: {}
+        service: {}
         port: 80
 """
 
@@ -68,6 +69,12 @@ releases:
 
 
 app = Flask(__name__)
+
+@app.route('/pipeline_api/getSchema', methods=['GET'])
+def get_schema():
+    with open('./schema.json',"r") as f:
+      data=json.loads(f.read())
+    return (data)
 
 @app.route('/pipeline_api/create', methods=['POST'])
 def pipline_api():
@@ -100,26 +107,33 @@ def validate(data):
         ingress_path=(json_data["services"][service]["ingress"]["path"])
         ingress_host=(json_data["services"][service]["ingress"]["host"])
         ingress_service_name=(json_data["services"][service]["ingress"]["service_name"])
-        write(project_name, service_name,service_replica_count, pullSecrets, service_repo, service_tag,volume_status,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_path, ingress_status,ingress_host,ingress_path,ingress_service_name)
+        write(project_name, service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_host,ingress_path,ingress_service_name)
     helmfile_write(project_name, azure_user)
-    return  service_name,service_replica_count, pullSecrets, service_repo, service_tag,volume_status,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_path, ingress_status,ingress_host,ingress_path,ingress_service_name
+    return  service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_host,ingress_path,ingress_service_name
 
 ##create values.yaml files
-def write( project_name,service_name,service_replica_count, pullSecrets, service_repo, service_tag,volume_status,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_path,ingress_host,ingress_service_name):
-    # Path("./"+project_name+"/values").mkdir(parents=True, exist_ok=True)
-    if not os.path.exists("./"+project_name+"/values"):
-      os.makedirs("./"+project_name+"/values")
-    with open ("./"+project_name+"/values/"+service_name+"-values.yaml","a+") as f :
-        var_list = yaml.load(valuse.format(service_name,service_replica_count, pullSecrets, service_repo, service_tag,volume_status,volume_name,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_host,ingress_path,ingress_service_name))
-        yaml.dump(var_list, f)
+def write( project_name,service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name):
+    if not os.path.exists("./projects/"+project_name+"/values"):
+      os.makedirs("./projects/"+project_name+"/values")
+    with open ("./projects/"+project_name+"/values/"+service_name+"-values.yaml","a+") as f :
+        var_list = yaml.load(valuse .format(service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name), Loader=yaml.BaseLoader)
+        yaml.dump(var_list, f, sort_keys=False)
 
-##create helmfile
+#create helmfile
+# def helmfile_write(project_name, azure_user):
+#     if not os.path.exists("./"+project_name+"/helmfile"):
+#         os.makedirs("./"+project_name+"/helmfile")
+#     with open ("./"+project_name+"/helmfile/helmfile.yaml","w+") as f :
+#         var_list = yaml.safe_load_all(helmfile)
+#         yaml.dump(var_list, f, sort_keys=False)
+    # maker(project_name, azure_user)
+    # git(project_name)
+
 def helmfile_write(project_name, azure_user):
-    with open ("./"+project_name+"/helmfile/helmfile.yaml","a+") as f :
-        var_list = yaml.load(valuse, Loader=yaml.FullLoader)
-        yaml.dump(var_list, f)
+    os.system("cp -r ./helmfile projects/"+ project_name)
     maker(project_name, azure_user)
     git(project_name)
+
 
 ##maker project api
 def maker(project_name ,azure_user):
@@ -128,8 +142,8 @@ def maker(project_name ,azure_user):
 
 ##push values & helmfile to azure repo
 def git(project_name):
-    os.system("chnod +x git_command.sh ")
-    os.system("./git_command.sh {}".format(project_name))
+    os.system("chmod +x git_command.sh ")
+    os.system("./git_command.sh {} ".format(project_name))
 
 
             

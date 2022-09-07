@@ -1,0 +1,24 @@
+HTTP/2 200 
+cache-control: no-cache, no-store, must-revalidate
+pragma: no-cache
+content-length: 700
+content-type: application/json; charset=utf-8; api-version=5.0-preview.1
+expires: -1
+p3p: CP="CAO DSP COR ADMa DEV CONo TELo CUR PSA PSD TAI IVDo OUR SAMi BUS DEM NAV STA UNI COM INT PHY ONL FIN PUR LOC CNT"
+set-cookie: VstsSession=%7B%22PersistentSessionId%22%3A%2209561b36-3619-488c-a832-c559d366391c%22%2C%22PendingAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22CurrentAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22SignInState%22%3A%7B%7D%7D;SameSite=None; domain=.dev.azure.com; expires=Thu, 07-Sep-2023 20:26:37 GMT; path=/; secure; HttpOnly
+x-tfs-processid: d4cababb-ce20-49cb-8001-066d808784d1
+strict-transport-security: max-age=31536000; includeSubDomains
+activityid: 5c8b72a8-37fe-4591-a292-82961c3e15ef
+x-tfs-session: 5c8b72a8-37fe-4591-a292-82961c3e15ef
+x-vss-e2eid: 5c8b72a8-37fe-4591-a292-82961c3e15ef
+x-vss-senderdeploymentid: c518140b-a1e2-d11a-3c91-1a181d4b1e29
+x-vss-userdata: 19c4a3db-bea1-6324-92d9-47fbf9b41ca0:LA349514@greendreamteam.onmicrosoft.com
+x-frame-options: SAMEORIGIN
+request-context: appId=cid-v1:5ff2fb41-7b44-4199-811f-c76fe5186821
+access-control-expose-headers: Request-Context
+x-content-type-options: nosniff
+x-cache: CONFIG_NOCACHE
+x-msedge-ref: Ref A: 45768A58CD9142AEB8CC7CCDFB89B629 Ref B: TLV30EDGE0407 Ref C: 2022-09-07T20:26:37Z
+date: Wed, 07 Sep 2022 20:26:37 GMT
+
+{"variables":{"Authorization":{"value":null,"isSecret":true},"url":{"value":"https://harbor.branch-yesodot.org/api/chartrepo/library/charts"},"values_path":{"value":"test-values"}},"id":57,"type":"Vsts","name":"api-test21","description":"A test variable group","createdBy":{"displayName":null,"id":"19c4a3db-bea1-6324-92d9-47fbf9b41ca0"},"createdOn":"2022-09-07T20:26:37.8733333Z","modifiedBy":{"displayName":null,"id":"19c4a3db-bea1-6324-92d9-47fbf9b41ca0"},"modifiedOn":"2022-09-07T20:26:37.8733333Z","isShared":false,"variableGroupProjectReferences":[{"projectReference":{"id":"8c87ce04-2cb2-407e-b68c-dd94152c0d9b","name":"api-test21"},"name":"api-test21","description":"A test variable group"}]}

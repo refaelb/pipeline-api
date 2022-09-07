@@ -1,7 +1,12 @@
-project_name=$1
+if [ ! -f .env ]
+then
+  export $(cat .env | xargs)
+fi
 
-token="4dks6lvuaq7plwo4g3vaphd4w2yxut6mf2o3d5dpbgaoywahczzqw"
-azureuser="ontario-135"
+project_name=$1
+token=$TOKEN
+azureuser=$ADMINUSER
+
 cd ./../$project_name
 git init .
 # git remote add origin   https://{$azureuser}:{$token}@dev.azure.com/yesodot/migration1/_git/migration1
