@@ -1,16 +1,16 @@
 HTTP/2 200 
 cache-control: no-cache, no-store, must-revalidate
 pragma: no-cache
-content-length: 700
+content-length: 690
 content-type: application/json; charset=utf-8; api-version=5.0-preview.1
 expires: -1
 p3p: CP="CAO DSP COR ADMa DEV CONo TELo CUR PSA PSD TAI IVDo OUR SAMi BUS DEM NAV STA UNI COM INT PHY ONL FIN PUR LOC CNT"
-set-cookie: VstsSession=%7B%22PersistentSessionId%22%3A%22652a6b8e-2f44-4548-b9b0-b9d115ad8c4e%22%2C%22PendingAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22CurrentAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22SignInState%22%3A%7B%7D%7D;SameSite=None; domain=.dev.azure.com; expires=Thu, 07-Sep-2023 20:30:56 GMT; path=/; secure; HttpOnly
-x-tfs-processid: b7721831-7eb5-4c10-987d-65d65f0d8b83
+set-cookie: VstsSession=%7B%22PersistentSessionId%22%3A%22be2a5853-4bfd-4b8a-849f-998e86a8bb15%22%2C%22PendingAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22CurrentAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22SignInState%22%3A%7B%7D%7D;SameSite=None; domain=.dev.azure.com; expires=Thu, 07-Sep-2023 20:37:03 GMT; path=/; secure; HttpOnly
+x-tfs-processid: 7d1712f8-d65a-411a-9db0-a2a37431b710
 strict-transport-security: max-age=31536000; includeSubDomains
-activityid: bf07ecef-fc00-423f-bff4-5f3d0ede23b4
-x-tfs-session: bf07ecef-fc00-423f-bff4-5f3d0ede23b4
-x-vss-e2eid: bf07ecef-fc00-423f-bff4-5f3d0ede23b4
+activityid: 586b218c-80c9-4581-8ae2-f2dad6876d86
+x-tfs-session: 586b218c-80c9-4581-8ae2-f2dad6876d86
+x-vss-e2eid: 586b218c-80c9-4581-8ae2-f2dad6876d86
 x-vss-senderdeploymentid: c518140b-a1e2-d11a-3c91-1a181d4b1e29
 x-vss-userdata: 19c4a3db-bea1-6324-92d9-47fbf9b41ca0:LA349514@greendreamteam.onmicrosoft.com
 x-frame-options: SAMEORIGIN
@@ -18,7 +18,7 @@ request-context: appId=cid-v1:5ff2fb41-7b44-4199-811f-c76fe5186821
 access-control-expose-headers: Request-Context
 x-content-type-options: nosniff
 x-cache: CONFIG_NOCACHE
-x-msedge-ref: Ref A: CF00AB3C7A514BED8C5C68F890FB6251 Ref B: TLV30EDGE0515 Ref C: 2022-09-07T20:30:56Z
-date: Wed, 07 Sep 2022 20:30:56 GMT
+x-msedge-ref: Ref A: 7FEB18DF03284E3DB708EB6CE88B3659 Ref B: TLV30EDGE0420 Ref C: 2022-09-07T20:37:03Z
+date: Wed, 07 Sep 2022 20:37:03 GMT
 
-{"variables":{"Authorization":{"value":null,"isSecret":true},"url":{"value":"https://harbor.branch-yesodot.org/api/chartrepo/library/charts"},"values_path":{"value":"test-values"}},"id":58,"type":"Vsts","name":"api-test21","description":"A test variable group","createdBy":{"displayName":null,"id":"19c4a3db-bea1-6324-92d9-47fbf9b41ca0"},"createdOn":"2022-09-07T20:30:56.4133333Z","modifiedBy":{"displayName":null,"id":"19c4a3db-bea1-6324-92d9-47fbf9b41ca0"},"modifiedOn":"2022-09-07T20:30:56.4133333Z","isShared":false,"variableGroupProjectReferences":[{"projectReference":{"id":"683f0ded-dca0-4f06-9e91-3db764f3e01b","name":"api-test21"},"name":"api-test21","description":"A test variable group"}]}
+{"variables":{"Authorization":{"value":null,"isSecret":true},"url":{"value":"https://harbor.branch-yesodot.org/api/chartrepo/library/charts"},"values_path":{"value":"test-values"}},"id":59,"type":"Vsts","name":"api-test21","description":"A test variable group","createdBy":{"displayName":null,"id":"19c4a3db-bea1-6324-92d9-47fbf9b41ca0"},"createdOn":"2022-09-07T20:37:03.64Z","modifiedBy":{"displayName":null,"id":"19c4a3db-bea1-6324-92d9-47fbf9b41ca0"},"modifiedOn":"2022-09-07T20:37:03.64Z","isShared":false,"variableGroupProjectReferences":[{"projectReference":{"id":"58ddad6a-33ca-4cab-90c9-3905b1a6e7a1","name":"api-test21"},"name":"api-test21","description":"A test variable group"}]}

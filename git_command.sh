@@ -6,7 +6,7 @@ fi
 project_name=$1
 token=$TOKEN
 azureuser=$ADMINUSER
-
+pwd 
 cd ./../projects/$project_name
 git init .
 # git remote add origin   https://{$azureuser}:{$token}@dev.azure.com/yesodot/migration1/_git/migration1
