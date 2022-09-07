@@ -1,0 +1,10 @@
+HTTP/2 201 
+date: Wed, 07 Sep 2022 09:33:59 GMT
+content-type: application/json
+content-length: 1118
+expires: Wed 24 Feb 1982 18:42:00 GMT
+x-api-schemas: https://rancher.branch-yesodot.org/v3/cluster/local/schemas
+x-content-type-options: nosniff
+strict-transport-security: max-age=15724800; includeSubDomains
+
+{"actions":{"move":"https://rancher.branch-yesodot.org/v3/cluster/local/namespaces/api-tester?action=move"},"annotations":{"cattle.io/status":"{\"conditions\": [{\"type\": \"InitialRolesPopulated\", \"status\": \"Unknown\", \"message\": \"Populating initial roles\"},{\"type\": \"ResourceQuotaValidated\", \"status\": \"Unknown\", \"message\": \"Validating resource quota\"}]}"},"baseType":"namespace","created":"2022-09-07T09:33:59Z","createdTS":1662543239000,"creatorId":"u-2djbb","id":"api-tester","labels":{"cattle.io/creator":"norman"},"links":{"remove":"https://rancher.branch-yesodot.org/v3/cluster/local/namespaces/api-tester","self":"https://rancher.branch-yesodot.org/v3/cluster/local/namespaces/api-tester","update":"https://rancher.branch-yesodot.org/v3/cluster/local/namespaces/api-tester","yaml":"https://rancher.branch-yesodot.org/v3/cluster/local/namespaces/api-tester/yaml"},"name":"api-tester","projectId":"local:p-q6dz6","resourceQuota":{},"state":"activating","transitioning":"yes","transitioningMessage":"Populating initial roles","type":"namespace","uuid":"ada8230b-4d50-4ce0-930c-b560bb52b570"}

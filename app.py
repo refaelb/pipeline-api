@@ -1,4 +1,6 @@
+from inspect import ArgSpec
 from re import I
+from sys import argv
 from flask import Flask, request ,Response
 import json
 import yaml
@@ -95,23 +97,30 @@ def validate(data):
         ingress_status=(json_data["services"][service]["ingress"]["enable"])
         ingress_path=(json_data["services"][service]["ingress"]["path"])
         ingress_host=(json_data["services"][service]["ingress"]["host"])
-        write(project_name, service_name, service_repo, service_tag, volume_mount, volume_sub, volume_name,ingress_path, ingress_status,ingress_host,service_port, service_replica_count)
-    helmfile_write(project_name)
-    return  project_name, service_name, service_repo, service_tag, volume_mount, volume_sub, volume_name,ingress_path, ingress_status,ingress_host,service_port, service_replica_count
+        write(project_name, service_name,pullSecrets, service_repo, service_tag, volume_mount, volume_sub, volume_name,configmap,ingress_path, ingress_status,ingress_host,service_port, service_replica_count)
+    helmfile_write(project_name, azure_user)
+    return  project_name, service_name, service_repo, service_tag, volume_mount, volume_sub, volume_name,ingress_path, ingress_status,ingress_host,service_port, service_replica_count, pullSecrets,configmap
 
-def write( project_name, service_name, service_repo, service_tag, volume_mount, volume_sub, volume_name,ingress_path, ingress_status,ingress_host,service_port, service_replica_count):
+##create values.yaml files
+def write( project_name, service_name,pullSecrets, service_repo, service_tag, volume_mount, volume_sub, volume_name,configmap,ingress_path, ingress_status,ingress_host,service_port, service_replica_count):
     with open ("./../"+project_name+"/valuse/"+service_name+"-valuse.yaml","a+") as f :
         var_list = yaml.load(valuse, Loader=yaml.FullLoader)
-        yaml.dump(var_list, f.format( service_name, service_repo, service_tag, volume_mount, volume_sub, volume_name,ingress_path, ingress_status,ingress_host,service_port, service_replica_count))
+        yaml.dump(var_list, f.format( service_name,pullSecrets, service_repo, service_tag, volume_mount, volume_sub, volume_name,configmap,ingress_path, ingress_status,ingress_host,service_port, service_replica_count))
 
-
-def helmfile_write(project_name):
+##create helmfile
+def helmfile_write(project_name, azure_user):
     with open ("./../"+project_name+"/helmfile/helmfile.yaml","a+") as f :
         var_list = yaml.load(valuse, Loader=yaml.FullLoader)
         yaml.dump(var_list, f)
+    maker(project_name, azure_user)
     git(project_name)
 
+##maker project api
+def maker(project_name ,azure_user):
+    os.system("chmod +x maker/new-api.sh")
+    os.system("./maker/new-api.sh {}".format(project_name ,azure_user))
 
+##push values & helmfile to azure repo
 def git(project_name):
     os.system("chnod +x git_command.sh ")
     os.system("./git_command.sh {}".format(project_name))
