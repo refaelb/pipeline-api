@@ -1,0 +1,129 @@
+config:
+  configmaps:
+    configmap: null
+images:
+  PullSecrets:
+    service_pull: null
+  repository:
+    service_repo: null
+  tag:
+    service_tag: null
+ingress:
+  annotations:
+    myannotation: test
+  enabled:
+    ingress_status: null
+  hosts:
+  - host:
+      ingress_host: null
+    paths:
+    - path:
+        ingress_path: null
+      port: 80
+      service:
+        service_name: null
+name: {}
+replicaCount:
+  service_replica_count: null
+service:
+  ports:
+    service_port: null
+volume:
+- claimName:
+    volume_name: null
+  enable:
+    volume_status: null
+  mounts:
+  - mountPath:
+      volume_mount: null
+    subPath:
+      volume_path: null
+  name:
+    volume_name: null
+  type: volumeClaim
+config:
+  configmaps:
+    configmap: null
+images:
+  PullSecrets:
+    service_pull: null
+  repository:
+    service_repo: null
+  tag:
+    service_tag: null
+ingress:
+  annotations:
+    myannotation: test
+  enabled:
+    ingress_status: null
+  hosts:
+  - host:
+      ingress_host: null
+    paths:
+    - path:
+        ingress_path: null
+      port: 80
+      service:
+        service_name: null
+name: {}
+replicaCount:
+  service_replica_count: null
+service:
+  ports:
+    service_port: null
+volume:
+- claimName:
+    volume_name: null
+  enable:
+    volume_status: null
+  mounts:
+  - mountPath:
+      volume_mount: null
+    subPath:
+      volume_path: null
+  name:
+    volume_name: null
+  type: volumeClaim
+config:
+  configmaps:
+    configmap: null
+images:
+  PullSecrets:
+    service_pull: null
+  repository:
+    service_repo: null
+  tag:
+    service_tag: null
+ingress:
+  annotations:
+    myannotation: test
+  enabled:
+    ingress_status: null
+  hosts:
+  - host:
+      ingress_host: null
+    paths:
+    - path:
+        ingress_path: null
+      port: 80
+      service:
+        service_name: null
+name: {}
+replicaCount:
+  service_replica_count: null
+service:
+  ports:
+    service_port: null
+volume:
+- claimName:
+    volume_name: null
+  enable:
+    volume_status: null
+  mounts:
+  - mountPath:
+      volume_mount: null
+    subPath:
+      volume_path: null
+  name:
+    volume_name: null
+  type: volumeClaim

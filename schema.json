@@ -14,6 +14,7 @@
                 "port": "",
                 "volumes":
                 {
+                    "enable": false,
                     "name": "",
                     "mount_path": "",
                     "sub_path": ""
@@ -22,7 +23,8 @@
                 {
                     "enable": false,
                     "host": "",
-                    "path": "/"
+                    "path": "/",
+                    "service_name": ""
                 }
 
             },
@@ -43,7 +45,8 @@
                 {
                     "enable": false,
                     "host": "",
-                    "path": "/"
+                    "path": "/",
+                    "service_name": ""
                 }
             }
         }
