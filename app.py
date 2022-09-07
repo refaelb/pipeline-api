@@ -113,9 +113,9 @@ def validate(data):
 
 ##create values.yaml files
 def write( project_name,service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name):
-    if not os.path.exists("./projects/"+project_name+"/values"):
-      os.makedirs("./projects/"+project_name+"/values")
-    with open ("./projects/"+project_name+"/values/"+service_name+"-values.yaml","a+") as f :
+    if not os.path.exists("./../projects/"+project_name+"/values"):
+      os.makedirs("./../projects/"+project_name+"/values")
+    with open ("./../projects/"+project_name+"/values/"+service_name+"-values.yaml","a+") as f :
         var_list = yaml.load(valuse .format(service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name), Loader=yaml.BaseLoader)
         yaml.dump(var_list, f, sort_keys=False)
 
@@ -130,7 +130,7 @@ def write( project_name,service_name,service_replica_count, pullSecrets, service
     # git(project_name)
 
 def helmfile_write(project_name, azure_user):
-    os.system("cp -r ./helmfile projects/"+ project_name)
+    os.system("cp -r ./helmfile ./../projects/"+ project_name)
     maker(project_name, azure_user)
     git(project_name)
 
