@@ -1,0 +1,50 @@
+{
+    "project_name": "string",
+    "azure_user": "string",
+    "pullSecrets": [],
+    "configMap": [],
+    "services":
+        {
+            "service_name_1": 
+            {
+                "name": "ok",
+                "repository": "",
+                "tag": "",
+                "replicacount": "",
+                "port": "",
+                "volumes":
+                {
+                    "name": "",
+                    "mount_path": "",
+                    "sub_path": ""
+                },
+                "ingress":
+                {
+                    "enable": false,
+                    "host": "",
+                    "path": "/"
+                }
+
+            },
+            "service_name_2": 
+            {
+                "name": "ok",
+                "repository": "",
+                "tag": "",
+                "replicacount": "",
+                "port": "",
+                "volumes":
+                {
+                    "name": "",
+                    "mount_path": "",
+                    "sub_path": ""
+                },
+                "ingress":
+                {
+                    "enable": false,
+                    "host": "",
+                    "path": "/"
+                }
+            }
+        }
+}
