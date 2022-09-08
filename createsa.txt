@@ -1,1 +1,0 @@
-{"$id":"1","innerException":null,"message":"Service connection field not specified\r\nParameter name: endpoint.Authorization.Parameters[apitoken]","typeName":"System.ArgumentException, mscorlib","typeKey":"ArgumentException","errorCode":0,"eventId":0}

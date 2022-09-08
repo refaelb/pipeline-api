@@ -44,6 +44,9 @@ ingress:
       - path: {}
         service: {}
         port: 80
+env:
+  - name: {}
+    value: {}
 """
 
 helmfile="""
@@ -107,16 +110,17 @@ def validate(data):
         ingress_path=(json_data["services"][service]["ingress"]["path"])
         ingress_host=(json_data["services"][service]["ingress"]["host"])
         ingress_service_name=(json_data["services"][service]["ingress"]["service_name"])
-        write(project_name, service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_host,ingress_path,ingress_service_name)
+        env_name=(json_data["services"][service]["env"]["name"])
+        env_value=(json_data["services"][service]["env"]["value"])
+        write(project_name, service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_host,ingress_path,ingress_service_name,env_name, env_value)
     helmfile_write(project_name, azure_user)
-    return  service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_host,ingress_path,ingress_service_name
-
+    return  "200 OK"
 ##create values.yaml files
-def write( project_name,service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name):
+def write( project_name,service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name,env_name, env_value):
     if not os.path.exists("./../projects/"+project_name+"/values"):
       os.makedirs("./../projects/"+project_name+"/values")
     with open ("./../projects/"+project_name+"/values/"+service_name+"-values.yaml","a+") as f :
-        var_list = yaml.load(valuse .format(service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name), Loader=yaml.BaseLoader)
+        var_list = yaml.load(valuse .format(service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name,env_name, env_value), Loader=yaml.BaseLoader)
         yaml.dump(var_list, f, sort_keys=False)
 
 #create helmfile

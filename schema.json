@@ -25,6 +25,11 @@
                     "host": "",
                     "path": "/",
                     "service_name": ""
+                },
+                "env":
+                {
+                    "name": "",
+                    "value": ""
                 }
 
             },
@@ -37,6 +42,7 @@
                 "port": "",
                 "volumes":
                 {
+                    "enable": "false",
                     "name": "",
                     "mount_path": "",
                     "sub_path": ""
@@ -47,6 +53,11 @@
                     "host": "",
                     "path": "/",
                     "service_name": ""
+                },
+                "env":
+                {
+                    "name": "",
+                    "value": ""
                 }
             }
         }

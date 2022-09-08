@@ -1,1 +1,0 @@
-{"baseType":"error","code":"NotUnique","fieldName":"username","message":"Username is already in use.","status":422,"type":"error"}
