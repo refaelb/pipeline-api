@@ -1,14 +1,4 @@
-# project_name=$1
-# namespace=$1
-# varable_group=$1
-# service_connection_name=$1 
-# usernameRancher=$1 # this is the username of the user that will be created in Rancher
-# passwordRancher=$1 # password for rancher user
-# token=$2 
-# clusterId=$3 #local
-# username=$4 #username for azure devops
-# password=$5 #password for the user azure devops
-# userName=$6 #userName is the same as admin in azure devops
+export $(cat .env | xargs)
 
 project_name=$1
 namespace=$1
@@ -18,9 +8,9 @@ usernameRancher=$1 # this is the username of the user that will be created in Ra
 passwordRancher=$1 # password for rancher user
 token=token-kz4gq:x4dxtqdklp6vmtgqhr6mt6n5dk5c7g55ksp596rh9tmtb5dp255gsw
 clusterId=local
-username=LA349514 #username for azure devops
-password=yrtzbf5mbp7rqc24yykac6oat6tempj7dvmrykr7x42ns53hz3ma #password for the user azure devops
 userName=$2 #userName is the same as admin in azure devops
+username=$USERNAME #username for azure devops
+password=$PASSWORD #password for the user azure devops
 #################
 # create rancher project #
 ##################################################################################################################################################33

@@ -1,8 +1,8 @@
 export $(cat .env | xargs)
 
 project_name=$1
-token=$TOKEN
-azureuser=$ADMINUSER
+token=$PASSWORD
+azureuser=$USERNAME
 
 cd ./../projects/$project_name
 git init .
