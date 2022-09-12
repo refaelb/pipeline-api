@@ -97,7 +97,7 @@ def helmfile_write(project_name, azure_user):
     os.system("cp -r ./helmfile ./../../projects/"+ project_name)
     maker(project_name, azure_user)
     git(project_name)
-
+    create_pipeline(project_name)
 
 ##maker project api
 def maker(project_name ,azure_user):
@@ -109,8 +109,13 @@ def git(project_name):
     os.system("chmod +x git_command.sh ")
     os.system("./git_command.sh {} ".format(project_name))
 
-# def create_pipeline()
+##create pipline to new project in azure devops
+def create_pipeline(project_name):
+    os.system("chmod +x create_pipeline.sh ")
+    os.system (" create_project.sh {} ".format(project_name))
 
+
+            
 
 if __name__ == '__main__':
     app.run(debug=True)

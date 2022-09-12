@@ -1,6 +1,10 @@
 *.env
-*__pycache__/
+__pycache__/
 *projects/
 *.txt
+<<<<<<< HEAD
 *logs/
 .gitignore
+=======
+logs/
+>>>>>>> 749bb0069d928083d71af2ba82de64b1db551683
