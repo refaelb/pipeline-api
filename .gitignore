@@ -2,5 +2,5 @@
 *__pycache__/
 *projects/
 *.txt
-*.logs/
+*logs/
 .gitignore

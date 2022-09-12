@@ -1,1 +1,0 @@
-serviceAccount name is: {{ .Values.project_name }}-cd

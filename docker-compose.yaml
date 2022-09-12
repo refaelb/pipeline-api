@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api_gateway:
+    build: ./api_gateway/
+    ports:
+      - "5000:5000"
+  creator:
+    build: ./creator/
+    ports:
+      - "8081:8080"
+  # app:
+  #   build: .
+  #   ports:
+  #     - "8081:8080"

@@ -1,3 +1,5 @@
+from urllib import response
+import requests
 from inspect import ArgSpec
 from re import I
 from sys import argv
@@ -7,8 +9,10 @@ import yaml
 # import git 
 import os
 from pathlib import Path
+from flask import render_template
 
 
+app = Flask(__name__)
 
 
 valuse="""name: {}
@@ -49,45 +53,9 @@ env:
     value: {}
 """
 
-helmfile="""
-environments:
-  dev:
-  prod:
 
-repositories:
-- name: yesodot
-  url: https://harborreg-2.northeurope.cloudapp.azure.com/chartrepo/library
-  username: {{ requiredEnv "HARBOR_USER" }}
-  password: {{ requiredEnv "HARBOR_PASSWORD" }}
-
-releases:
-# - name: {service_name}
-#   namespace: {project_name}
-  chart: yesodot/common
-  version: {{ requiredEnv "COMMON_VERSION" | default "0.5.2" }}
-  values:
-    - ../{{ .Environment.Name }}-values/Back-Service.yaml
-  installed: true 
-"""
-
-
-app = Flask(__name__)
-
-@app.route('/pipeline_api/getSchema', methods=['GET'])
-def get_schema():
-    with open('./schema.json',"r") as f:
-      data=json.loads(f.read())
-    return (data)
-
-@app.route('/pipeline_api/create', methods=['POST'])
-def pipline_api():
-    data = (request.data)
-    res = validate(data)
-    response = Response(res)
-    return response
-
-
-def validate(data):
+@app.route('/pipeline_api/creator', methods=['POST'])
+def creator(data):
     json_data=json.loads(data)
     project_name = (json_data["project_name"])
     azure_user=(json_data["azure_user"])
@@ -115,26 +83,18 @@ def validate(data):
         write(project_name, service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_sub,configmap,ingress_status,ingress_host,ingress_path,ingress_service_name,env_name, env_value)
     helmfile_write(project_name, azure_user)
     return  "200 OK"
+
 ##create values.yaml files
 def write( project_name,service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name,env_name, env_value):
-    if not os.path.exists("./../projects/"+project_name+"/values"):
-      os.makedirs("./../projects/"+project_name+"/values")
-    with open ("./../projects/"+project_name+"/values/"+service_name+"-values.yaml","a+") as f :
+    if not os.path.exists("./../../projects/"+project_name+"/values"):
+      os.makedirs("./../../projects/"+project_name+"/values")
+    with open ("./../../projects/"+project_name+"/values/"+service_name+"-values.yaml","a+") as f :
         var_list = yaml.load(valuse .format(service_name,service_replica_count, pullSecrets, service_repo, service_tag,service_port,volume_status,volume_name,volume_name, volume_mount, volume_path,configmap,ingress_status,ingress_host,ingress_sub,ingress_service_name,env_name, env_value), Loader=yaml.BaseLoader)
         yaml.dump(var_list, f, sort_keys=False)
 
-#create helmfile
-# def helmfile_write(project_name, azure_user):
-#     if not os.path.exists("./"+project_name+"/helmfile"):
-#         os.makedirs("./"+project_name+"/helmfile")
-#     with open ("./"+project_name+"/helmfile/helmfile.yaml","w+") as f :
-#         var_list = yaml.safe_load_all(helmfile)
-#         yaml.dump(var_list, f, sort_keys=False)
-    # maker(project_name, azure_user)
-    # git(project_name)
 
 def helmfile_write(project_name, azure_user):
-    os.system("cp -r ./helmfile ./../projects/"+ project_name)
+    os.system("cp -r ./helmfile ./../../projects/"+ project_name)
     maker(project_name, azure_user)
     git(project_name)
 
@@ -149,8 +109,7 @@ def git(project_name):
     os.system("chmod +x git_command.sh ")
     os.system("./git_command.sh {} ".format(project_name))
 
-
-            
+# def create_pipeline()
 
 
 if __name__ == '__main__':

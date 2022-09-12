@@ -1,0 +1,24 @@
+<html>
+<body>
+    <p>Here is my variable: {{ variable }}</p>
+</body>
+</html><html>
+  <head>
+    <link rel="stylesheet" href="./../static/styles/style.css" >
+    <title>CiCd</title>
+  </head>
+  <body>      
+    <form action="/pipeline_api/approve/status" method="POST" id="content">
+      <div class="cards" id="content">          
+        <input type="submit" value="true" name="status" id="submit"  onclick="loading()" >
+        <input type="submit" value="false" name="status" id="submit"  onclick="loading()" >
+        <div id="loading"></div>
+        <script type="text/javascript">
+          function loading(){
+            console.log('start of loading....')
+            document.getElementById("loading").className = "loadingbackground";
+          }
+            </script>
+    </form>
+  </body>
+</html>

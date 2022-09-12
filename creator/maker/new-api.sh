@@ -47,7 +47,7 @@ echo $project_id
 sleep 2
 
 # create k8s namespace and connect to project
-curl -Li -k -o logs/ns.txt  --location --request POST 'https://rancher.branch-yesodot.org/v3/clusters/local/namespace' \
+curl -Li -k -o ./../logs/ns.txt  --location --request POST 'https://rancher.branch-yesodot.org/v3/clusters/local/namespace' \
 --header 'Authorization: Bearer '"$token" \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -66,7 +66,7 @@ sleep 2
 
 ##########################################
 # create user in rancher
-curl  -s -o logs/res.json -k --location --request POST 'https://rancher.branch-yesodot.org/v3/user' \
+curl  -s -o ./../logs/res.json -k --location --request POST 'https://rancher.branch-yesodot.org/v3/user' \
 --header 'Authorization: Bearer '$token \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -134,7 +134,7 @@ echo $sa
 sleep 4 
 echo "start azureDevops"
  # create An AzureDevops project
-curl -o logs/createproject.txt -Li -u "${username}:${password}" --location --request POST 'https://dev.azure.com/yesodot/_apis/projects?api-version=6.0' \
+curl -o ./../logs/createproject.txt -Li -u "${username}:${password}" --location --request POST 'https://dev.azure.com/yesodot/_apis/projects?api-version=6.0' \
 -H  'Content-Type: application/json' \
 --data-raw '{
   "name": "'${project_name}'",
@@ -153,7 +153,7 @@ echo "Create project: $project_name"
 ###########################################
 sleep 3
 # Create a k8s service connection
-curl -o logs/createsa.txt   -u "${username}:${password}" --location --request POST 'https://dev.azure.com/yesodot/'${project_name}'/_apis/serviceendpoint/endpoints?api-version=5.0-preview.2' \
+curl -o ./../logs/createsa.txt   -u "${username}:${password}" --location --request POST 'https://dev.azure.com/yesodot/'${project_name}'/_apis/serviceendpoint/endpoints?api-version=5.0-preview.2' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "authorization": {
@@ -191,22 +191,22 @@ echo "Create variable group: $varable_group"
 ###############################################
 sleep 2
 
-curl -o logs/admin1.txt  -u "${username}:${password}" -k  --location --request  GET 'https://dev.azure.com/yesodot/_apis/projects/'${project_name} | jq -r '.id'
+curl -o ./../logs/admin1.txt  -u "${username}:${password}" -k  --location --request  GET 'https://dev.azure.com/yesodot/_apis/projects/'${project_name} | jq -r '.id'
 group_id=$(cat logs/admin1.txt | jq -r '.id')
 echo $group_id
 sleep 2
 ####
-curl -o logs/admin2.txt -u "${username}:${password}" -k --location --request  GET 'https://vssps.dev.azure.com/yesodot/_apis/graph/descriptors/'${group_id}'?api-version=5.0-preview.1' | jq -r '.value'
+curl -o ./../logs/admin2.txt -u "${username}:${password}" -k --location --request  GET 'https://vssps.dev.azure.com/yesodot/_apis/graph/descriptors/'${group_id}'?api-version=5.0-preview.1' | jq -r '.value'
 scopeDescriptor=$(cat logs/admin2.txt | jq -r '.value')
 echo $scopeDescriptor
 sleep 2
 ######
-curl -o logs/admin3.txt -u "${username}:${password}"    -k --location --request GET 'https://vssps.dev.azure.com/yesodot/_apis/Graph/groups?scopeDescriptor='${scopeDescriptor} |  jq -r '.value[] | [.descriptor, .displayName]' | grep -B 1 "Project Administrators" | grep -v "Project Administrators" | awk '{print $1}' | sed 's/\,//g' | sed 's/\"//g'
+curl -o ./../logs/admin3.txt -u "${username}:${password}"    -k --location --request GET 'https://vssps.dev.azure.com/yesodot/_apis/Graph/groups?scopeDescriptor='${scopeDescriptor} |  jq -r '.value[] | [.descriptor, .displayName]' | grep -B 1 "Project Administrators" | grep -v "Project Administrators" | awk '{print $1}' | sed 's/\,//g' | sed 's/\"//g'
 groupId=$(cat admin3.txt |  jq -r '.value[] | [.descriptor, .displayName]' | grep -B 1 "Project Administrators" | grep -v "Project Administrators" | awk '{print $1}' | sed 's/\,//g' | sed 's/\"//g')
 echo $groupId
 sleep 2
 ######
-curl  -o logs/admin4.txt -u "${username}:${password}"  -k --location --request POST 'https://vssps.dev.azure.com/yesodot/_apis/graph/users?groupDescriptors='{$groupId}'&api-version=5.1-preview.1' \
+curl  -o ./../logs/admin4.txt -u "${username}:${password}"  -k --location --request POST 'https://vssps.dev.azure.com/yesodot/_apis/graph/users?groupDescriptors='{$groupId}'&api-version=5.1-preview.1' \
 --header "Content-Type: application/json" \
 --data-raw "{'principalName': '"${userName}"@greendreamteam.onmicrosoft.com'}"
 
