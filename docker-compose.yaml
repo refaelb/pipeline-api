@@ -1,13 +1,21 @@
 version: '3'
 services:
   api_gateway:
-    build: ./api_gateway/
+    build: api_gateway/
+    image: api_gateway21
+    environment:
+      CREATOR_URL: '0.0.0.0:3000/pipeline_api/creator'
     ports:
       - "5000:5000"
   creator:
-    build: ./creator/
+    build: creator/
+    image: creator21
     ports:
-      - "8081:8080"
+      - "3000:3000"
+    environment:
+      RANCHER_TOKEN: 'token-kz4gq:x4dxtqdklp6vmtgqhr6mt6n5dk5c7g55ksp596rh9tmtb5dp255gsw'
+      USERNAME: 'ONTARIO-135'
+      TOKEN: '4dks6lvuaq7plwo4g3vaphd4w2yxut6mf2o3d5dpbgaoywahczzq'
   # app:
   #   build: .
   #   ports:

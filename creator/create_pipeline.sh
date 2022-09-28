@@ -1,9 +1,9 @@
-export $(cat .env | xargs)
+# export $(cat .env | xargs)
 
 project_name=$1
-repo_id=$2
-username=$USERNAME
-password=$PASWORD
+# repo_id=$2
+username=$2
+password=$3
 
 curl -o repo-id.txt --location -u "${username}:${password}"  --request GET 'https://dev.azure.com/yesodot/'${project_name}'/_apis/git/repositories' 
 repo_id=$(cat repo-id.txt | jq .value[].id)

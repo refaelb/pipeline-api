@@ -1,3 +1,4 @@
+from tokenize import Token
 from urllib import response
 import requests
 from inspect import ArgSpec
@@ -10,7 +11,6 @@ import yaml
 import os
 from pathlib import Path
 from flask import render_template
-
 
 app = Flask(__name__)
 
@@ -55,7 +55,8 @@ env:
 
 
 @app.route('/pipeline_api/creator', methods=['POST'])
-def creator(data):
+def creator():
+    data=(request.data)
     json_data=json.loads(data)
     project_name = (json_data["project_name"])
     azure_user=(json_data["azure_user"])
@@ -101,21 +102,28 @@ def helmfile_write(project_name, azure_user):
 
 ##maker project api
 def maker(project_name ,azure_user):
+    ranchToken=os.environ(['RANCER_TOKEN'])
+    username=os.environ(['USERNAME'])
+    token=os.environ(['TOKEN'])
     os.system("chmod +x maker/new-api.sh")
-    os.system("./maker/new-api.sh {}".format(project_name ,azure_user))
+    os.system("./maker/new-api.sh {} {} {} {} {} ".format(project_name ,azure_user,ranchToken, username, token))
 
 ##push values & helmfile to azure repo
 def git(project_name):
+    username=os.environ(['USERNAME'])
+    token=os.environ(['TOKEN'])
     os.system("chmod +x git_command.sh ")
-    os.system("./git_command.sh {} ".format(project_name))
+    os.system("./git_command.sh {} {} {}".format(project_name,token,username))
 
 ##create pipline to new project in azure devops
 def create_pipeline(project_name):
+    username=os.environ(['USERNAME'])
+    token=os.environ(['TOKEN'])
     os.system("chmod +x create_pipeline.sh ")
-    os.system (" create_project.sh {} ".format(project_name))
+    os.system (" create_pipeline.sh {} {} {}".format(project_name,username,token))
 
 
             
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run( host='0.0.0.0', port=3000)

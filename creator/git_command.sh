@@ -1,10 +1,10 @@
-export $(cat .env | xargs)
+# export $(cat .env | xargs)
 
 project_name=$1
-token=$PASSWORD
-azureuser=$USERNAME
+token=$2
+azureuser=$3
 
-cd ./../projects/$project_name
+cd ./../../projects/$project_name
 git init .
 git remote add origin   https://$azureuser:$token@dev.azure.com/yesodot/$project_name/_git/$project_name
 git add .

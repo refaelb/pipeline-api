@@ -21,13 +21,14 @@ def get_schema():
       data=json.loads(f.read())
     return (data)
 
+
 @app.route('/pipeline_api/create', methods=['POST'])
 def pipline_api():
     data = (request.data)
     # res = validate(data)
     # response = Response(res)
-    return requests.post('/pipeline_api/creator', data=data)
-    return response
+    return requests.post(os.environ['CREATOR_URL'], data=data)
+    # return response
 
 
 # def validate(data):
